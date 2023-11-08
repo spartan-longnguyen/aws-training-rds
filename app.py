@@ -1,11 +1,18 @@
 from flask import Flask, jsonify, request
 from models import db, User
+import os
 
 app = Flask(__name__)
 
+DB_USERNAME = os.environ.get('DB_USERNAME')
+DB_PASSWORD = os.environ.get('DB_PASSWORD')
+DB_HOST = os.environ.get('DB_HOST')
+DB_PORT = os.environ.get('DB_PORT')
+DB_NAME = os.environ.get('DB_NAME')
 
 # Configure the database connection URL for Amazon RDS
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:12345678@longnguyen-db.ci1xxxcuy6pi.ap-southeast-1.rds.amazonaws.com:5432/postgres'
+app.config['SQLALCHEMY_DATABASE_URI'] = f'postgresql://{DB_USERNAME}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}'
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:12345678@longnguyen-db.ci1xxxcuy6pi.ap-southeast-1.rds.amazonaws.com:5432/postgres'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 # Initialize SQLAlchemy
