@@ -10,7 +10,3 @@ class User(db.Model):
 
     def __repr__(self):
         return f'<User {self.username}>'
-
-# Add more models as needed
-# class AnotherModel(db.Model):
-#     ...

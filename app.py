@@ -12,6 +12,8 @@ db.init_app(app)
 
 with app.app_context():
     db.create_all()
+
+
 @app.route('/')
 def index():
     try:
@@ -24,6 +26,7 @@ def index():
                 return jsonify({'message': 'No users found in the database.'})
     except Exception as e:
         return jsonify({'error': str(e)}), 500
+
 
 @app.route('/')
 def get_user():
@@ -46,6 +49,7 @@ def get_user():
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
+
 @app.route('/add', methods=['POST'])
 def add_user():
     try:
@@ -63,6 +67,7 @@ def add_user():
             return jsonify({'message': 'User added successfully!'})
     except Exception as e:
         return jsonify({'error': str(e)}), 500
+
 
 if __name__ == '__main__':
     app.run(debug=True)
