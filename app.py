@@ -3,6 +3,7 @@ from models import db, User
 
 app = Flask(__name__)
 
+
 # Configure the database connection URL for Amazon RDS
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:12345678@longnguyen-db.ci1xxxcuy6pi.ap-southeast-1.rds.amazonaws.com:5432/postgres'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -28,7 +29,7 @@ def index():
         return jsonify({'error': str(e)}), 500
 
 
-@app.route('/')
+@app.route('/users')
 def get_user():
     try:
         with app.app_context():
